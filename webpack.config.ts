@@ -1,14 +1,18 @@
 import path from "path";
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import type {Configuration as DevServerConfiguration} from "webpack-dev-server";
+
 
 type Mode = 'production' | 'development'
 
 interface EnvVariables {
     mode: Mode
+    port: number
 }
 
 export default (env: EnvVariables) => {
+    const isDevMode = env.mode === 'development';
     const config: webpack.Configuration =
         {
             mode: env.mode ?? 'development',
@@ -32,8 +36,13 @@ export default (env: EnvVariables) => {
             },
             plugins: [
                 new HtmlWebpackPlugin({template: path.resolve(__dirname, 'public', 'index.html')}),
-                new webpack.ProgressPlugin()
-            ],
+                isDevMode && new webpack.ProgressPlugin()
+            ].filter(Boolean),
+            devtool: isDevMode && 'inline-source-map',
+            devServer: isDevMode ? {
+                port: env.port ?? 3001,
+                open: true
+            } : undefined
         }
     return config
 }

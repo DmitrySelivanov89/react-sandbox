@@ -16,9 +16,10 @@
   "main": "index.js",
   "name": "webpack-config",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build:dev": "webpack --env mode=development",
-    "build:production": "webpack --env mode=production"
+    "build:production": "webpack --env mode=production",
+    "start": "webpack serve --env mode=development",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "version": "1.0.0"
 }
