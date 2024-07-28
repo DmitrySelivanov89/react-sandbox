@@ -1,0 +1,7 @@
+.draggable {
+    position: absolute;
+    background-color: firebrick;
+    height: 100px;
+    width: 100px;
+    cursor: grab;
+}
