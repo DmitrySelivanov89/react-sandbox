@@ -1,0 +1,17 @@
+.card-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card {
+  flex: 1 100px;
+  border: 1px solid black;
+  padding: 1rem;
+  cursor: grab;
+  height: 300px;
+  border-radius: 5px;
+}
