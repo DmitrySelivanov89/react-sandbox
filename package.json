@@ -1,6 +1,11 @@
 {
-  "author": "",
-  "description": "",
+  "author": "Dmitry Selivanov",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rxjs": "^7.8.1"
+  },
+  "description": "webpack config example",
   "devDependencies": {
     "@types/node": "^20.11.7",
     "@types/react": "^18.2.48",
@@ -26,9 +31,5 @@
     "start": "webpack serve --env mode=development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.0.0",
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  }
+  "version": "1.0.0"
 }
