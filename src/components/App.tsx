@@ -1,5 +1,13 @@
-import './App.css'
+import './App.css';
+import CardList from './card-list/CardList';
+import React from "react";
+import {LiveSearch} from "./live-search/LiveSearch";
 
 export const App = () => {
-    return <div className={'test'}>{'Work'}</div>
-}
+
+  return <>
+    {/*{<CardList />};*/}
+    {/*<Drag/>*/}
+    <LiveSearch/>
+  </>;
+};

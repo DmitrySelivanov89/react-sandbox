@@ -1,12 +1,12 @@
-import {createRoot} from "react-dom/client";
-import {App} from "./components/App";
+import { createRoot } from "react-dom/client";
+import { App } from "./components/App";
 
-const root = document.getElementById('root')
+const root = document.getElementById('root');
 
-if(!root) {
-    throw new Error('root not found')
+if (!root) {
+    throw new Error('root not found');
 }
 
-const container = createRoot(root)
+const container = createRoot(root);
 
-container.render(<App/>)
+container.render(<App />);
