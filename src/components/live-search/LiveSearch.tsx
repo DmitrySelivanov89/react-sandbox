@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { fromEvent, ReplaySubject, takeUntil } from "rxjs";
+import React from 'react';
 import { search } from "./search";
 import { Repo } from "./RepoRequest";
 import './LiveSearch.css';
@@ -7,9 +8,9 @@ import './LiveSearch.css';
 export const LiveSearch = () => {
   const ref = useRef<HTMLInputElement>(null);
   const [items, setItems] = useState<Repo[]>([]);
-  const destroy$ = new ReplaySubject<void>();
 
   useEffect(() => {
+    const destroy$ = new ReplaySubject<void>();
     if (ref.current) {
       const input$ = fromEvent<KeyboardEvent>(ref.current, "input");
       search(input$).pipe(takeUntil(destroy$)).subscribe(setItems);
@@ -21,9 +22,13 @@ export const LiveSearch = () => {
   }, []);
 
   return <div className={'container'}>
-    <input className={'search-box'} placeholder={'search'} ref={ref}></input>
+    <input className={'search-box'} placeholder={'search'} ref={ref} />
     <ul className={'itemList'}>
-      {items.map((item) => <li key={item.id}>{item.name}</li>)}
+      {items.map((item) => {
+        return <li key={item.id}>
+          {item.name}
+        </li>;
+      })}
     </ul>
   </div>;
 };

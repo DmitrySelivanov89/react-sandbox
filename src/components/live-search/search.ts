@@ -1,14 +1,6 @@
-import {debounceTime, distinctUntilChanged, filter, map, Observable, switchMap,} from "rxjs";
-import {ajax} from "rxjs/ajax";
-import {Repo, RepoRequest} from "./RepoRequest";
-
-const repoRequest = (text: string) => {
-  return ajax
-    .getJSON<RepoRequest>(
-      `https://api.github.com/search/repositories?q=${text}`
-    )
-    .pipe(map((response) => response.items));
-};
+import { debounceTime, distinctUntilChanged, filter, map, Observable, switchMap, } from "rxjs";
+import { Repo } from "./RepoRequest";
+import { repoRequest } from "./repo-request";
 
 export const search = (
   source$: Observable<KeyboardEvent>
@@ -19,7 +11,7 @@ export const search = (
       const target = event.target as HTMLInputElement;
       return target ? target.value.trim() : "";
     }),
-    filter((value: string) => value.length > 3),
+    filter((value: string) => value.length >= 3),
     distinctUntilChanged(),
     switchMap(repoRequest),
   );

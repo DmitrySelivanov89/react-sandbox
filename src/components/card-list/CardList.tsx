@@ -1,4 +1,5 @@
 import { DragEvent, useState } from "react";
+import React from 'react';
 import { Card } from "./Card";
 import './CardList.css';
 
@@ -17,12 +18,10 @@ const CardList = () => {
 
   const dragEndHandler = (e: DragEvent) => {
     // e.target.style.backgroundColor = '#fff';
-
   };
 
-  const dragOverHandler = (e: DragEvent) => {
-    e.preventDefault();
-  };
+  const dragOverHandler = (e: DragEvent) => e.preventDefault();
+
 
   const dragLeaveHandler = (e: DragEvent) => {
   };

@@ -1,13 +1,10 @@
 import './App.css';
-import CardList from './card-list/CardList';
 import React from "react";
-import {LiveSearch} from "./live-search/LiveSearch";
+import { Drag } from './drag-and-drop/Drag';
 
 export const App = () => {
 
   return <>
-    {/*{<CardList />};*/}
-    {/*<Drag/>*/}
-    <LiveSearch/>
+    <Drag />
   </>;
 };
