@@ -24,11 +24,7 @@ export const LiveSearch = () => {
   return <div className={'container'}>
     <input className={'search-box'} placeholder={'search'} ref={ref} />
     <ul className={'itemList'}>
-      {items.map((item) => {
-        return <li key={item.id}>
-          {item.name}
-        </li>;
-      })}
+      {items.map((item) => <li key={item.id}>{item.name}</li>)}
     </ul>
   </div>;
 };

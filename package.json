@@ -1,8 +1,10 @@
 {
   "author": "Dmitry Selivanov",
   "dependencies": {
+    "observable-hooks": "^4.2.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router": "^7.0.2",
     "rxjs": "^7.8.1"
   },
   "description": "react sandbox",

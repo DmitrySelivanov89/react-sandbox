@@ -70,7 +70,7 @@ export interface Repo {
   has_pages: boolean;
   has_discussions: boolean;
   forks_count: number;
-  mirror_url: any;
+  mirror_url: unknown;
   archived: boolean;
   disabled: boolean;
   open_issues_count: number;
