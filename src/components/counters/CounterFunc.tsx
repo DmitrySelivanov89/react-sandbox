@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 type ActionType = 'INCREMENT' | 'DECREMENT' | 'RESET';
 
@@ -15,12 +15,12 @@ const counterReducer = (state = counterInitState, action: { type: ActionType; })
     case 'INCREMENT':
       return {
         ...state,
-        counter: state.counter + 1,
+        counter: state.counter++,
       };
     case 'DECREMENT':
       return {
         ...state,
-        counter: state.counter - 1,
+        counter: state.counter--,
       };
     case 'RESET':
       return {
