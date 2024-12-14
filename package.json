@@ -1,9 +1,8 @@
 {
   "author": "Dmitry Selivanov",
   "dependencies": {
-    "observable-hooks": "^4.2.4",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-router": "^7.0.2",
     "rxjs": "^7.8.1"
   },
@@ -11,10 +10,9 @@
   "devDependencies": {
     "@eslint/js": "^9.16.0",
     "@types/node": "^20.16.5",
-    "@types/react": "^18.3.14",
-    "@types/react-dom": "^18.3.2",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
     "@types/webpack": "^5.28.5",
-    "@types/webpack-dev-server": "^4.7.2",
     "css-loader": "^7.1.2",
     "eslint": "^9.16.0",
     "eslint-plugin-react": "^7.37.2",
@@ -24,10 +22,10 @@
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.2",
-    "typescript-eslint": "^8.17.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.1.0"
+    "webpack-dev-server": "^5.2.0"
   },
   "license": "ISC",
   "main": "index.js",
