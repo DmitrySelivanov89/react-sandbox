@@ -1,14 +1,13 @@
 import { useEffect, useRef } from "react";
-import { fromEvent, ReplaySubject, takeUntil } from "rxjs";
+import { fromEvent, Subject, takeUntil } from "rxjs";
 import './Drag.css';
-import React from 'react';
 import { drag } from "./drag";
 
 export const Drag = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const destroy$ = new ReplaySubject<void>();
+    const destroy$ = new Subject<void>();
     if (ref.current) {
       const mouseDown$ = fromEvent<MouseEvent>(ref.current, "mousedown");
       const mouseMove$ = fromEvent<MouseEvent>(document, "mousemove");
