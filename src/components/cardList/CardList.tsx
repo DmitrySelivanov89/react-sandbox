@@ -1,7 +1,6 @@
 import { DragEvent, useState } from "react";
-import React from 'react';
 import { Card } from "./Card";
-import './CardList.css';
+import cls from './CardList.css';
 
 const CardList = () => {
   const [cards, setCards] = useState<Card[]>([
@@ -50,7 +49,7 @@ const CardList = () => {
       onDragOver={(e) => dragOverHandler(e)}
       onDragLeave={(e) => dragLeaveHandler(e)}
       draggable
-      className={'card'}
+      className={cls.card}
       key={card?.id}>
       <h1>{card?.title}</h1>
       <p>{card?.description}</p>
@@ -58,7 +57,7 @@ const CardList = () => {
     </div>;
   });
 
-  return <div className={'card-list'}>{sortedCardList}</div>;
+  return <div className={cls.cardList}>{sortedCardList}</div>;
 };
 
 export default CardList;
