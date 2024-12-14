@@ -1,7 +1,6 @@
 import { ChangeEvent, useEffect, useRef } from "react";
 import { useMediaDevices } from "../../hooks/useMediaDevices";
 
-
 const MediaDevices = () => {
   const { mediaStream, error, loading, mediaDeviceInfo, setVolume, volume, toggleStream } = useMediaDevices();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -89,6 +88,9 @@ const MediaDevices = () => {
       </button>
     </div>
     <canvas ref={canvasRef} width={300} height={100} />
+    <ul>
+      {mediaDeviceInfo.map((device) => <li key={device.deviceId}>{device.label} {device.kind}</li>)}
+    </ul>
   </>);
 };
 
