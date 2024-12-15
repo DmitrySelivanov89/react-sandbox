@@ -5,7 +5,7 @@ interface MediaStreamState {
   error: string | null;
   loading: boolean;
   mediaDeviceInfo: MediaDeviceInfo[];
-  setVolume: Dispatch<SetStateAction<number>>;
+  handleSetVolume: (volume: number) => void;
   volume: number;
   toggleStream: () => void;
 }
@@ -21,11 +21,12 @@ export const useMediaDevices = (options: UseMediaDevicesOptions = {
 }): MediaStreamState => {
   const [mediaStream, setMediaStream] = useState<MediaStream | null>(null);
   const [mediaDeviceInfo, setMediaDeviceInfo] = useState<MediaDeviceInfo[]>([]);
-  const [volume, setVolume] = useState<number>(1);
+  const [volume, setVolume] = useState<number>(0.5);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const mediaStreamRef = useRef<MediaStream | null>(null);
-  const audioContextRef = useRef<AudioContext | null>(null);
+  const mediaStreamRef = useRef<MediaStream>(null);
+  const audioContextRef = useRef<AudioContext>(null);
+  const gainNodeRef = useRef<GainNode>(null);
 
   const getUserMedia = async () => {
     setLoading(true);
@@ -50,10 +51,11 @@ export const useMediaDevices = (options: UseMediaDevicesOptions = {
   const setupAudioContext = (stream: MediaStream) => {
     audioContextRef.current = new AudioContext();
     const source = audioContextRef.current.createMediaStreamSource(stream);
-    const gainNode = audioContextRef.current.createGain();
-    gainNode.gain.value = volume;
-    source.connect(gainNode);
-    gainNode.connect(audioContextRef.current.destination);
+    gainNodeRef.current = audioContextRef.current.createGain();
+    gainNodeRef.current.gain.value = volume / 100;
+    source.connect(gainNodeRef.current);
+    gainNodeRef.current.connect(audioContextRef.current.destination);
+    gainNodeRef.current;
   };
 
   const handleMediaError = (err: unknown) => {
@@ -83,10 +85,17 @@ export const useMediaDevices = (options: UseMediaDevicesOptions = {
     }
   };
 
+  const handleSetVolume = useCallback((volume: number) => {
+    setVolume(volume);
+    if (gainNodeRef.current) {
+      gainNodeRef.current.gain.value = volume / 100;
+    }
+  }, []);
+
   useEffect(() => {
     getUserMedia();
     return () => stopStream();
   }, [options.audio, options.video]);
 
-  return { mediaStream, error, loading, mediaDeviceInfo, setVolume, volume, toggleStream };
+  return { mediaStream, error, loading, mediaDeviceInfo, handleSetVolume, volume, toggleStream };
 };
