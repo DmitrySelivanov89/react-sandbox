@@ -4,7 +4,7 @@ import { repoRequest } from "./repo-request";
 import { Repo } from "./RepoRequest";
 
 export const Search = () => {
-  const searchSubjectRef = useRef<Subject<string> | null>(null);
+  const searchSubjectRef = useRef<Subject<string>>(null);
   const [repo, setRepo] = useState<Repo[]>([]);
 
   useEffect(() => {

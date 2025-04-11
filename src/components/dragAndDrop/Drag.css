@@ -1,7 +1,12 @@
 .draggable {
-    position: absolute;
-    background-color: firebrick;
-    height: 100px;
-    width: 100px;
-    cursor: grab;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: firebrick;
+  color: #fff;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  cursor: grab;
 }

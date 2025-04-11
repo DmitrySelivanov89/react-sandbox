@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import {useEffect, useRef, useState} from "react";
 
 export const useMicrophone = () => {
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -10,7 +10,7 @@ export const useMicrophone = () => {
     const initAudio = async () => {
       try {
         audioContextRef.current = new AudioContext();
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const stream = await navigator.mediaDevices.getUserMedia({audio: true});
         setMediaStream(stream);
         const source = audioContextRef.current.createMediaStreamSource(stream);
         const gain = audioContextRef.current.createGain();
@@ -42,5 +42,5 @@ export const useMicrophone = () => {
     }
   };
 
-  return { mediaStream, changeVolume, volume };
+  return {mediaStream, changeVolume, volume};
 };

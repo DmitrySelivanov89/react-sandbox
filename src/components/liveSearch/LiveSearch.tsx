@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { fromEvent, ReplaySubject, takeUntil } from "rxjs";
+import { fromEvent, Subscription } from "rxjs";
 import { search } from "./search";
 import { Repo } from "./RepoRequest";
 import './LiveSearch.css';
@@ -9,15 +9,11 @@ export const LiveSearch = () => {
   const [items, setItems] = useState<Repo[]>([]);
 
   useEffect(() => {
-    const destroy$ = new ReplaySubject<void>();
+    let subscription: Subscription;
     if (ref.current) {
-      const input$ = fromEvent<KeyboardEvent>(ref.current, "input");
-      search(input$).pipe(takeUntil(destroy$)).subscribe(setItems);
+      subscription = search(fromEvent<KeyboardEvent>(ref.current, "input")).subscribe(setItems);
     }
-    return () => {
-      destroy$.next();
-      destroy$.complete();
-    };
+    return () => subscription.unsubscribe();
   }, []);
 
   return <div className={'container'}>

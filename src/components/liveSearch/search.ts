@@ -7,11 +7,8 @@ export const search = (
 ): Observable<Repo[]> => {
   return source$.pipe(
     debounceTime(300),
-    map((event) => {
-      const target = event.target as HTMLInputElement;
-      return target ? target.value.trim() : "";
-    }),
-    filter((value: string) => value.length >= 3),
+    map((event) => (event.target as HTMLInputElement).value.trim()),
+    filter((value) => value.length >= 3),
     distinctUntilChanged(),
     switchMap(repoRequest),
   );
